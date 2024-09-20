@@ -1,3 +1,4 @@
+import { groceryReducer } from './store/reducers/grocessory.reducer';
 import { ApplicationConfig, provideZoneChangeDetection, provideExperimentalZonelessChangeDetection, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
@@ -11,7 +12,9 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideStore({}),
+    provideStore({ 
+      groceries: groceryReducer
+    }),
     provideEffects({}),
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states
