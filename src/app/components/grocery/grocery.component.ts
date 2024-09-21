@@ -3,6 +3,7 @@ import { Component, Signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
+import { addToBucket } from '../../store/action/bucket.action';
 
 
 @Component({
@@ -32,6 +33,8 @@ export class GroceryComponent {
       name:item.name,
       quantity:1
     }
+    this.store.dispatch(addToBucket({payload}))
+
 
 
   }
