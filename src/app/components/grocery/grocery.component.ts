@@ -1,7 +1,8 @@
+import { Grocery } from './../../../models/grocery.model';
 import { Component, Signal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Grocery } from '../../../models/grocery.model';
 import { CommonModule } from '@angular/common';
+import { Store } from '@ngrx/store';
 
 
 @Component({
@@ -15,6 +16,9 @@ export class GroceryComponent {
 
   groceries$?:Observable<Grocery[]>;
 
+  constructor(private store:Store<{groceries:Grocery[]}>){
+    this.groceries$ =  store.select("groceries");
+  }
 
 
   onTypeChange(event: Event){

@@ -3,7 +3,7 @@
     <select (change)="onTypeChange($event)" class="type-select">
         <option value="">Select type</option>
         <option value="fruit">Fruit</option>
-        <option value="snacks">Snacks</option>
+        <option value="vegetable">Vegetable</option>
     </select>
     <ul class="grocery-list">
         @for(groc of groceries$ | async; track groc.id) {
@@ -12,7 +12,7 @@
             {{ groc.name }}
             <span class="decrement-button" (click)="decrement(groc)">-</span>
           </li>
-        }@empty {
+        }@empty{
             <li>loading..</li>
         }            
       </ul>
