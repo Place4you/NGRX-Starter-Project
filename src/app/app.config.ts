@@ -6,6 +6,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { bucketReducer } from './store/reducers/bucket.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,7 +14,8 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideStore({ 
-      groceries: groceryReducer
+      groceries: groceryReducer,
+      myBucket: bucketReducer,
     }),
     provideEffects({}),
     provideStoreDevtools({

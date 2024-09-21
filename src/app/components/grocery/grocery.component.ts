@@ -19,6 +19,7 @@ export class GroceryComponent {
 
   constructor(private store:Store<{groceries:Grocery[]}>){
     this.groceries$ =  store.select("groceries");
+    
   }
 
 
@@ -34,9 +35,6 @@ export class GroceryComponent {
       quantity:1
     }
     this.store.dispatch(addToBucket({payload}))
-
-
-
   }
   decrement(item:Grocery){
     const payload = {
