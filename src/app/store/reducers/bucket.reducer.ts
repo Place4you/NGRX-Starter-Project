@@ -15,7 +15,9 @@ import { createReducer, on } from "@ngrx/store";
     if (existingItem) {
       // Increase the quantity of the item
       return state.map(item =>
-        item.id === payload.id ? { ...item, quantity: item.quantity + payload.quantity } : item
+        item.id === payload.id 
+        ? { ...item, quantity: item.quantity + payload.quantity } 
+        : item
       );
     } else {
       // Add the new item
@@ -30,7 +32,9 @@ import { createReducer, on } from "@ngrx/store";
     if (existingItem && existingItem.quantity > 1) {
       // Decrease the quantity if it's more than 1
       return state.map(item =>
-        item.id === payload.id ? { ...item, quantity: item.quantity - 1 } : item
+        item.id === payload.id 
+        ? { ...item, quantity: item.quantity - 1 } 
+        : item
       );
     } else {
       // Remove the item if quantity is 1 or less
