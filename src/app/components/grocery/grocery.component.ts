@@ -3,7 +3,7 @@ import { Component, Signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { addToBucket } from '../../store/action/bucket.action';
+import { addToBucket, removeFromBucket } from '../../store/action/bucket.action';
 
 
 @Component({
@@ -28,22 +28,26 @@ export class GroceryComponent {
   }
 
 
-  increment(item:Grocery){
-    const payload = {
-      id:item.id,
-      name:item.name,
-      quantity:1
-    }
-    this.store.dispatch(addToBucket({payload}))
-  }
-  decrement(item:Grocery){
-    const payload = {
-      id:item.id,
-      name:item.name
-    }
+  // Increment item quantity
+increment(item: Grocery) {
+  const payload = {
+    id: item.id,
+    name: item.name,  // Ensure that 'name' is needed here
+    quantity: 1      // Always increase by 1
+  };
+  this.store.dispatch(addToBucket({ payload }));
+}
 
+// Decrement item quantity
+decrement(item: Grocery) {
+  const payload = {
+    id: item.id,
+    quantity: 1  // Always decrease by 1, even if this isn't sent in reducer, for consistency
+  };
+  this.store.dispatch(removeFromBucket({ payload }));
+}
 
-
-  }
 
 }
+
+
