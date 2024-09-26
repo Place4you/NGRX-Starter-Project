@@ -17,18 +17,26 @@ import { selectGroceriesByType } from '../../store/selector/grocery.selector';
 export class GroceryComponent {
 
   groceries$?:Observable<Grocery[]>;
+  filteredGroceries$?:Observable<Grocery[]>;
 
   constructor(private store:Store<{groceries:Grocery[]}>){
-    this.groceries$ =  store.select(selectGroceriesByType)
+    this.groceries$ =  this.store.select("groceries")
     
   }
 
 
   onTypeChange(event: Event){
-
+    const  selectedType = (event.target as HTMLSelectElement).value;
+    if(selectedType){
+      this.filteredGroceries$ = this.store.select(selectGroceriesByType(selectedType))
+      console.log(this.filteredGroceries$);      
+    }
+    else{
+    this.filteredGroceries$ = undefined;
+    console.log('failed');
+    
   }
-
-
+  }
   // Increment item quantity
 increment(item: Grocery) {
   const payload = {
@@ -47,7 +55,6 @@ decrement(item: Grocery) {
   };
   this.store.dispatch(removeFromBucket({ payload }));
 }
-
 
 }
 
